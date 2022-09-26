@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.fachrul.common.entity.movie_review.Result" />
+    </data>
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:elevation="12dp"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageView android:layout_width="8dp"
+                android:layout_height="100dp"
+                android:src="@drawable/bg_rounded"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="16dp"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvImage"
+                android:layout_margin="32dp"
+                app:cardCornerRadius="38dp"
+                android:elevation="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent">
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:id="@+id/image"
+                    android:background="@color/teal_700"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"/>
+            </androidx.cardview.widget.CardView>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/name"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/cvImage"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@{data.author}"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rating"
+                app:layout_constraintStart_toEndOf="@+id/cvImage"
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/ic_baseline_grade_24"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                tools:text="@{String.valueOf(data.authorDetails.rating)}"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/date"
+                app:layout_constraintStart_toEndOf="@+id/cvImage"
+                app:layout_constraintTop_toBottomOf="@+id/rating"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                tools:text="@{data.updatedAt}"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@{data.content}"
+                android:justificationMode="inter_word"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/date"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

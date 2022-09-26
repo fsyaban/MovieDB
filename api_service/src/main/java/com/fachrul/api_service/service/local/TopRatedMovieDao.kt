@@ -1,0 +1,23 @@
+package com.fachrul.api_service.service.local
+
+import androidx.lifecycle.LiveData
+import androidx.room.*
+import com.fachrul.common.entity.database.MovieEntity
+
+@Dao
+interface TopRatedMovieDao:DiscoverMovieDao {
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    override fun insertMovie(movieEntity: MovieEntity)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    override fun insertMovies(movies: List<MovieEntity>)
+
+    @Delete
+    override fun deleteMovie(movie: MovieEntity)
+
+    @Query("SELECT * from movie WHERE status = 'toprated' ORDER BY id ASC")
+    override fun getAllMovie(): LiveData<List<MovieEntity>>
+
+    @Query("DELETE FROM movie WHERE status = 'toprated'")
+    override fun deleteAllMovie()
+}
